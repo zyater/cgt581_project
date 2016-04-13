@@ -21,6 +21,22 @@
 
 	<script type="text/javascript">
 	
+		var searchResults;
+
+		var searchResults1 = [
+			{id: "1", title: "Research Paper 1", author:"Author 1",year:"2008",len:"long",keywords:"a,b,c",abstract:"Here is the abstract"},
+			{id: "2", title: "Research Paper 2", author:"Author 2",year:"2010",len:"short",keywords:"a,d,f",abstract:"This paper is great"},
+			{id: "3", title: "Research Paper 3", author:"Author 2",year:"2012",len:"medium",keywords:"a,d,f",abstract:"This paper is ok"},
+			{id: "4", title: "Research Paper 4", author:"Author 2",year:"2001",len:"short",keywords:"a,d,f",abstract:"This paper goes in depth on some stuff"},
+			{id: "5", title: "Research Paper 5", author:"Author 4",year:"2007",len:"short",keywords:"a,d,f",abstract:"Not really anything of value in this one"},
+			{id: "6", title: "Research Paper 6", author:"Author 4",year:"1989",len:"long",keywords:"a,d,f",abstract:"This paper is revolutionary"},
+			{id: "7", title: "Research Paper 7", author:"Author 2",year:"2010",len:"very long",keywords:"a,d,f",abstract:"Don't read this garbage"},
+			{id: "8", title: "Research Paper 8", author:"Author 5",year:"2013",len:"short",keywords:"a,d,f",abstract:"Read, ponder, repeat"},
+			{id: "9", title: "Research Paper 9", author:"Author 2",year:"2003",len:"medium",keywords:"a,d,f",abstract:"there is some good stuff talked about in this one"},
+			{id: "10", title: "Research Paper 10", author:"Author 5",year:"2011",len:"short",keywords:"a,d,f",abstract:"abstract"}
+		];
+
+
 		google.charts.load('current', {packages: ['corechart', 'bar']});
 		google.charts.setOnLoadCallback(drawBarChart);
 	
@@ -31,7 +47,7 @@
 			data.addColumn('string','suggestion');
 			data.addColumn('number','Number of Articles');
 			data.addRows([
-				['Suggestion 1', 457],
+				['breast', 457],
 				['Suggestion 2', 213],
 				['Suggestion 3', 134],
 				['Suggestion 4', 78],
@@ -61,6 +77,8 @@
 		function performSearch() {
 			$(".results").show();
 		}
+
+
 	</script>
 	
   </head>
@@ -109,111 +127,35 @@
 					</div>
 					
 					
-					<div class="searchResult panel panel-default">
-						<div class="panel-heading">
-							<h4>
-								<a data-toggle="collapse" href="#searchResult1" aria-expanded="false" aria-controls="searchResult1"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span></a>
-								<a class="researchPaper" href="#">Research Paper Title 1</a>
-								<small> - Author 1</small>
-							</h4>
-						</div>
-						<div class="collapse" id="searchResult1">
-							<table class="table">
-								<tr><th>Year</th><td>2016</td></tr>
-								<tr><th>Length</th><td>23 pages</td></tr>
-								<tr><th>Keywords</th><td>one, two, three, four, cognition</td></tr>
-								<tr><th>Institution</th><td>Purdue</td></tr>
-							</table>
-							<div class="panel-body">
-								Abstract...
-							</div>
-						</div>
+					<div id="searchResults1">
+						<script type="text/javascript">
+							searchResults = searchResults1;
+							for(var i=0; i<searchResults.length; i++) {
+								
+								document.write('<div class="searchResult panel panel-default">');
+									document.write('<div class="panel-heading">');
+										document.write('<h4>');
+											document.write('<a data-toggle="collapse" href="#searchResult_'+searchResults[i].id+'" aria-expanded="false" aria-controls="searchResult_'+searchResults[i].id+'"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span></a>');
+											document.write('<a class="researchPaper" href="#">'+searchResults[i].title+'</a>');
+											document.write('<small> - '+searchResults[i].author+'</small>');
+										document.write('</h4>');
+									document.write('</div>');
+									document.write('<div class="collapse" id="searchResult_'+searchResults[i].id+'">');
+										document.write('<table class="table">');
+											document.write('<tr><th>Year</th><td>'+searchResults[i].year+'</td></tr>');
+											document.write('<tr><th>Length</th><td>'+searchResults[i].len+'</td></tr>');
+											document.write('<tr><th>Keywords</th><td>'+searchResults[i].keywords+'</td></tr>');
+										document.write('</table>');
+										document.write('<div class="panel-body">');
+											document.write(searchResults[i].abstract);
+										document.write('</div>');
+									document.write('</div>');
+								document.write('</div>');
+
+							}
+						</script>
 					</div>
-					
-					<div class="searchResult panel panel-default">
-						<div class="panel-heading">
-							<h4>
-								<a data-toggle="collapse" href="#searchResult2" aria-expanded="false" aria-controls="searchResult2"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span></a>
-								<a class="researchPaper" href="#">Research Paper Title 2</a>
-								<small> - Author 2</small>
-							</h4>
-						</div>
-						<div class="collapse" id="searchResult2">
-							<table class="table">
-								<tr><th>Year</th><td>2016</td></tr>
-								<tr><th>Length</th><td>23 pages</td></tr>
-								<tr><th>Keywords</th><td>one, two, three, four, cognition</td></tr>
-								<tr><th>Institution</th><td>Purdue</td></tr>
-							</table>
-							<div class="panel-body">
-								Abstract...
-							</div>
-						</div>
-					</div>
-					
-					<div class="searchResult panel panel-default">
-						<div class="panel-heading">
-							<h4>
-								<a data-toggle="collapse" href="#searchResult3" aria-expanded="false" aria-controls="searchResult3"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span></a>
-								<a class="researchPaper" href="#">Research Paper Title 3</a>
-								<small> - Author 3</small>
-							</h4>
-						</div>
-						<div class="collapse" id="searchResult3">
-							<table class="table">
-								<tr><th>Year</th><td>2016</td></tr>
-								<tr><th>Length</th><td>23 pages</td></tr>
-								<tr><th>Keywords</th><td>one, two, three, four, cognition</td></tr>
-								<tr><th>Institution</th><td>Purdue</td></tr>
-							</table>
-							<div class="panel-body">
-								Abstract...
-							</div>
-						</div>
-					</div>
-					
-					<div class="searchResult panel panel-default">
-						<div class="panel-heading">
-							<h4>
-								<a data-toggle="collapse" href="#searchResult4" aria-expanded="false" aria-controls="searchResult4"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span></a>
-								<a class="researchPaper" href="#">Research Paper Title 4</a>
-								<small> - Author 4</small>
-							</h4>
-						</div>
-						<div class="collapse" id="searchResult4">
-							<table class="table">
-								<tr><th>Year</th><td>2016</td></tr>
-								<tr><th>Length</th><td>23 pages</td></tr>
-								<tr><th>Keywords</th><td>one, two, three, four, cognition</td></tr>
-								<tr><th>Institution</th><td>Purdue</td></tr>
-							</table>
-							<div class="panel-body">
-								Abstract...
-							</div>
-						</div>
-					</div>
-					
-					<div class="searchResult panel panel-default">
-						<div class="panel-heading">
-							<h4>
-								<a data-toggle="collapse" href="#searchResult5" aria-expanded="false" aria-controls="searchResult5"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span></a>
-								<a class="researchPaper" href="#">Research Paper Title 5</a>
-								<small> - Author 5</small>
-							</h4>
-						</div>
-						<div class="collapse" id="searchResult5">
-							<table class="table">
-								<tr><th>Year</th><td>2016</td></tr>
-								<tr><th>Length</th><td>23 pages</td></tr>
-								<tr><th>Keywords</th><td>one, two, three, four, cognition</td></tr>
-								<tr><th>Institution</th><td>Purdue</td></tr>
-							</table>
-							<div class="panel-body">
-								Abstract...
-							</div>
-						</div>
-					</div>
-					
+
 					
 					<nav>
 						<ul class="pagination">
@@ -257,7 +199,7 @@
 					<div class="list-group-item checkbox">
 						<label>
 							<input type="checkbox" />
-							Search 1 + Search 2
+							Search 1 UNION Search 2
 						</label>
 					</div>
 					<div class="list-group-item checkbox">
@@ -275,7 +217,6 @@
 						<li><a href="#">Find Common Papers</a></li>
 						<li><a href="#">Combine Search Results</a></li>
 						<li><a href="#">Find Similar Terms</a></li>
-						<li><a href="#">Duplicate</a></li>
 						<li><a href="#">Share</a></li>
 					</ul>
 				</div>
